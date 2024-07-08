@@ -24,7 +24,7 @@ public class UsersController : BaseApiController
   }
 
   // [AllowAnonymous]
-  [HttpGet]
+  [HttpGet] // /api/users/
   public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
   {
     var users = await _userRepository.GetMembersAsync();
