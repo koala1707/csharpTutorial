@@ -21,6 +21,7 @@ import { ServerErrorComponent } from './errors/server-error/server-error.compone
 import { MemberCardComponent } from './members/member-card/member-card.component';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 import { MemberEditComponent } from './members/member-edit/member-edit.component';
+import { LoadingInterceptor } from './_interceptors/loading.interceptor';
 
 // standalone components do not need to exist here
 @NgModule({
@@ -49,8 +50,10 @@ import { MemberEditComponent } from './members/member-edit/member-edit.component
   ],
   providers: [
     // angular has a default interceptor and we don't want to overwrite, so multi is true.
+    // ensures that the interceptor is registered with the Angular dependency injection system and is available globally across your application.
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
-    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true}
+    {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
+    {provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]
 })
